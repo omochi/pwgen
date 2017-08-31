@@ -1,0 +1,22 @@
+#!/bin/bash
+set -ue
+
+# $1: len
+makePass() {
+    cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c "$1"
+}
+
+# $1: len
+genOnce() {
+    pass="$(makePass "$1")"
+    echo -n "$pass" | pbcopy
+    echo "$pass"
+}
+
+main(){
+    local len
+    len=20
+    genOnce "$len"
+}
+
+main "$@"
