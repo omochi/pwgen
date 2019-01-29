@@ -15,7 +15,11 @@ genOnce() {
 
 main(){
     local len
-    len=20
+    if [ $# -lt 1 ]; then
+        len=20
+    else
+        len=$1
+    fi
     genOnce "$len"
 }
 
